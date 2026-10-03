@@ -1,0 +1,9 @@
+.git
+node_modules
+dist
+backend/.venv
+backend/models
+data
+reports
+**/__pycache__
+.claude

@@ -1,0 +1,31 @@
+# Run the built app:  docker compose up --build   ->  http://localhost:8080
+# Requires the ml/ pipeline outputs: backend/models/ and data/images/ (see README).
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    volumes:
+      - ./backend/models:/app/models:ro
+      - ./data/images:/data/images:ro
+      - ./data/events:/data/events
+      - hf-cache:/hf-cache          # FashionCLIP text encoder, downloaded on first start
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/api/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  hf-cache:
