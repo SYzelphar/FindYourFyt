@@ -1,54 +1,100 @@
-/* Navbar.css */
-
-/* General layout for the navbar */
-.navbar {
-  width: 250px;
+/* Sidebar navigation */
+.sidenav {
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
-  height: 100vh;
-  background-color: #E6E6E6 !important;  /* Updated to dark purple */
-  ; /* Light gray background */
-  z-index: 1030; /* Ensure it's above the content */
+  width: var(--nav-w);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 16px 18px;
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
+  z-index: 1030;
 }
 
-/* Adjust the layout of the page */
-.content-container {
-  margin-left: 250px; /* Match the navbar width */
-  padding: 20px; /* Add some padding */
+.sidenav__brand {
+  padding: 0 12px;
+  color: var(--text);
+  font-size: 19px;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-/* Navbar brand styling */
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+.sidenav__brand:hover {
+  color: var(--white);
 }
 
-/* Navbar links styling */
-.nav-link {
-  color: #000; /* Black text color for links */
-  text-decoration: none; /* Remove underline from links */
+.sidenav__brand sup {
+  margin-left: 2px;
+  color: var(--text-3);
+  font-size: 11px;
 }
 
-/* User icon styling */
-.user-icon {
-  background-color: #e0e0e0; /* Light gray background for user icon */
-  border-radius: 50%; /* Make it circular */
-  width: 40px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
-  font-weight: bold; /* Make initials stand out */
-  text-align: center; /* Center text horizontally */
-  line-height: 40px; /* Center text vertically */
-  display: inline-block; /* Ensure proper alignment */
+.sidenav__links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 44px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-/* User name styling */
-.user-name {
-  font-weight: bold; /* Make user name stand out */
-  margin-left: 10px; /* Space between user icon and name */
+.sidenav__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-/* Optional: Add styles for active nav link (if needed) */
-.nav-link.active {
-  font-weight: bold; /* Make active link stand out */
+.sidenav__link:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.sidenav__link.active {
+  background: var(--surface-4);
+  color: var(--white);
+}
+
+.sidenav__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sidenav__name {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.sidenav__sub {
+  color: var(--text-3);
+  font-size: 12px;
 }

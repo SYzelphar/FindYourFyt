@@ -7,16 +7,18 @@ import {
   useLocation, // Keep the useLocation here
 } from "react-router-dom";
 import Swipe from './Components/Swipe';
-import SwipeButtons from './Components/SwipeButtons';
 import CartSidebar from './Components/CartSidebar';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
-import Footer from './Components/footer';
+import Footer from './Components/Footer';
+import { CartProvider } from './CartContext';
 
 function App() {
   return (
     <Router> {/* Move Router here */}
-      <LayoutWithFooterCheck />
+      <CartProvider>
+        <LayoutWithFooterCheck />
+      </CartProvider>
     </Router>
   );
 }
@@ -35,8 +37,7 @@ function LayoutWithFooterCheck() {
           path="/"
           element={
             <>
-              <Swipe />
-              <SwipeButtons />
+              <Swipe /> {/* renders its own SwipeButtons, wired to the same swipe handler */}
               <CartSidebar />
             </>
           }

@@ -1,122 +1,108 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+.home {
+  margin-left: var(--nav-w);
+  padding: 32px 40px 0;
 }
 
-.cardWide {
-  height: 20vh;
-  border-radius: 10px;
+.home__hero {
+  position: relative;
+  height: 30vh;
+  min-height: 200px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  background: #151515;
 }
 
-.cardWide img {
+/* The logo asset is black-on-cream; invert it to white-on-near-black for the dark theme. */
+.home__logo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: invert(1) grayscale(1) brightness(0.92);
 }
 
-.row {
-  margin-top: 30px;
-  margin-left: calc(10% + 120px); /* Shifted to the right by 100px */
-  width: calc(80% - 100px); /* Adjusted to fit within the screen after shifting */
-}
-
-.col {
-  flex: 0 0 30%; /* Sets the card width to 30% to fit 3 in a row */
-  max-width: 30%; 
-  margin-bottom: 20px;
-  margin-right: 40px; /* Adds spacing between cards */
-}
-
-.col:nth-child(3n) {
-  margin-right: 0; /* Removes the margin on the last card in each row */
-}
-
-.cardimg {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-  position: relative; /* Needed for the overlay to stay within the card */
-}
-
-.cardimg:hover {
-  transform: scale(1.05); /* Slightly increases the card size on hover */
-}
-
-.card-img-top {
-  width: 100%;
-  height: 195px; /* Increased height by 20px (was 150px before) */
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.card-title {
-  font-size: 16px;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-.card-text {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Drop shadow */
-  text-align: center;
-  z-index: 1;
-}
-
-.card-overlay {
+.home__heroText {
   position: absolute;
-  top: 0;
+  left: 28px;
+  right: 28px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.home__heroText p {
+  max-width: 460px;
+  margin: 0;
+  color: var(--text-2);
+  font-size: 15px;
+}
+
+.home__title {
+  margin: 36px 0 16px;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.home__card {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface-2);
+  text-decoration: none;
+}
+
+.home__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: brightness(0.85);
+}
+
+.home__card:hover img {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
+.home__cardLabel {
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
   display: flex;
-  justify-content: center;
   align-items: center;
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.3s ease-in-out;
-  z-index: 0; /* Ensures the text appears above the overlay */
+  justify-content: space-between;
+  padding: 36px 16px 14px;
+  background: linear-gradient(to bottom, rgba(10, 10, 11, 0), rgba(10, 10, 11, 0.9));
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 600;
 }
 
-.cardimg:hover .card-overlay {
-  opacity: 1; /* Show overlay on hover */
+.home__cardLabel svg {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Responsive media queries */
-@media (max-width: 1200px) {
-  .row {
-    margin-left: calc(5% + 80px); /* Adjust margin for medium screens */
-    width: calc(90% - 80px);
-  }
-  
-  .col {
-    flex: 0 0 45%; /* Adjust width to fit 2 cards per row */
-    max-width: 45%;
-    margin-right: 20px;
-  }
-
-  .col:nth-child(2n) {
-    margin-right: 0; /* Removes margin on the last card in each row */
-  }
+.home__card:hover .home__cardLabel svg {
+  opacity: 1;
+  transform: none;
 }
 
-@media (max-width: 768px) {
-  .row {
-    margin-left: calc(5% + 40px); /* Further adjustments for small screens */
-    width: calc(90% - 40px);
-  }
-
-  .col {
-    flex: 0 0 100%; /* Full width for one card per row */
-    max-width: 100%;
-    margin-bottom: 20px;
-    margin-right: 0;
+@media (max-width: 1100px) {
+  .home__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

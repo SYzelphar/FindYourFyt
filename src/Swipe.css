@@ -1,28 +1,392 @@
+/* ---------------------------------------------------------------- card */
 .card {
     position: relative;
-    width: 35vw;
-    padding: 20px;
-    max-width: 65vw;
-    height: 50vw;
-    border-radius: 20px;
+    height: min(50vw, calc(100vh - 250px));
+    aspect-ratio: 2 / 3;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background-color: var(--surface-3);
     background-size: cover;
     background-position: center;
-    box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow);
+    overflow: hidden;
 }
 
-.card > h3 {
+.card__caption {
     position: absolute;
-    bottom: 10px;
-    color: black;
-} 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 64px 20px 16px;
+    background: linear-gradient(to bottom, rgba(10, 10, 11, 0) 0%, rgba(10, 10, 11, 0.82) 55%, rgba(10, 10, 11, 0.95) 100%);
+}
+
+.card__caption h3 {
+    margin: 0;
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.card__sub {
+    margin: 4px 0 0;
+    color: var(--text-2);
+    font-size: 0.85rem;
+}
 
 .cardContainer {
     display: flex;
     justify-content: center;
-    margin-top: 5vh;
+    margin-top: 2vh;
     margin-bottom: 5vh;
 }
 
-.swipe{
+.swipe {
     position: absolute;
+    user-select: none;  /* dragging a card shouldn't select its text */
+}
+
+.card__top {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    z-index: 1;
+}
+
+.card__reason {
+    padding: 5px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(10, 10, 11, 0.72);
+    backdrop-filter: blur(8px);
+    color: var(--text);
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.card__why {
+    padding: 5px 13px;
+    border: none;
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--bg);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card__why[aria-expanded="true"] {
+    background: var(--surface-4);
+    color: var(--white);
+}
+
+.card--placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px;
+    background: var(--surface-2);
+    color: var(--text-2);
+    text-align: center;
+}
+
+.card--placeholder p {
+    margin: 0;
+}
+
+.card__retry {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--bg);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.swipeNotice {
+    position: fixed;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--surface-3);
+    color: var(--text);
+    font-size: 0.85rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+
+/* ---------------------------------------------------------------- toolbar */
+.deckToolbar {
+    width: min(560px, 46vw);
+    margin: 2.4vh auto 0;
+    font-size: 0.85rem;
+}
+
+.deckToolbar__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.deckToolbar__status {
+    margin-top: 8px;
+    min-height: 1.4em;
+    color: var(--text-2);
+}
+
+.segmented {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-2);
+}
+
+.segmented button {
+    padding: 5px 13px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-2);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.segmented button:hover {
+    color: var(--text);
+}
+
+.segmented button.segmented__on {
+    background: var(--white);
+    color: var(--bg);
+}
+
+.steer {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+}
+
+.steer svg {
+    position: absolute;
+    top: 50%;
+    left: 11px;
+    transform: translateY(-50%);
+    color: var(--text-3);
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.steer input {
+    width: 100%;
+    padding: 8px 14px 8px 34px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    outline: none;
+    background: var(--surface-2);
+    color: var(--text);
+    transition: border-color 0.15s ease;
+}
+
+.steer input::placeholder {
+    color: var(--text-3);
+}
+
+.steer input:focus {
+    border-color: var(--text-3);
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 6px 3px 11px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--surface-3);
+    color: var(--text);
+}
+
+.chip button {
+    border: none;
+    background: none;
+    color: var(--text-2);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.chip button:hover {
+    color: var(--white);
+}
+
+/* ---------------------------------------------------------------- why panel */
+.why {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-height: 78%;
+    overflow-y: auto;
+    padding: 16px 18px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: rgba(17, 17, 19, 0.96);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    color: var(--text);
+    font-size: 0.8rem;
+    text-align: left;
+    z-index: 2;
+    cursor: default;
+}
+
+.why__close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    border: none;
+    background: none;
+    color: var(--text-2);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.why__close:hover {
+    color: var(--white);
+}
+
+.why__headline {
+    margin: 0 18px 12px 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.why__section {
+    margin-top: 12px;
+}
+
+.why__label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-3);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.why__row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.why__row .why__label {
+    margin: 0;
+}
+
+.why__meter,
+.why__barTrack {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--surface-4);
+    overflow: hidden;
+}
+
+.why__meterFill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--white);
+}
+
+.why__value {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.why__likes {
+    display: flex;
+    gap: 12px;
+}
+
+.why__like {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.why__like img {
+    width: 40px;
+    height: 60px;
+    border-radius: 6px;
+    background: var(--surface-3);
+    object-fit: cover;
+}
+
+.why__like figcaption {
+    color: var(--text-2);
+    font-size: 0.72rem;
+}
+
+.why__bars {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.why__bars li {
+    display: grid;
+    grid-template-columns: 10em 1fr 2.6em;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.why__barName {
+    color: var(--text);
+}
+
+.why__bar {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+}
+
+/* Monochrome: pushes up = bright, pulls down = dim + hatched; the signed value is always printed. */
+.why__bar--pos {
+    background: var(--text);
+}
+
+.why__bar--neg {
+    background: repeating-linear-gradient(135deg, var(--text-3) 0 3px, transparent 3px 6px);
+}
+
+.why__barValue {
+    color: var(--text-2);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.why__meta {
+    margin: 12px 0 0;
+    color: var(--text-3);
+    font-size: 0.72rem;
 }

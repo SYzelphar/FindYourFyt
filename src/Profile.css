@@ -1,81 +1,172 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-  }
-  
-  .profile-page {
-    position: relative;
-    min-height: 100vh;
-  }
-  
-  .user-icon {
-    position: absolute;
-    top: 20px;
-    right: 480px;
-    width: 60px;
-    height: 60px;
-    background-color: #C0C0C0;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    font-weight: bold;
-  }
-  
-  .profile-container {
-    max-width: 800px;
-    margin: 70px auto 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-heading {
-    text-align: center;
-    font-size: 24px;
-    margin-top: 15px;
-    margin-bottom: 50px;
-    color: #333;
-  }
-  
-  .profile-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #fafafa;
-    border-radius: 8px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .section-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #555;
-  }
-  
-  .section-content {
-    font-size: 16px;
-    color: #777;
-  }
-  
-  .section-button {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .section-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .section-content p {
-    margin: 5px 0;
-  }
+.profile-page {
+  min-height: 100vh;
+  margin-left: var(--nav-w);   /* clear the fixed navbar */
+  padding: 40px 32px 0;
+}
+
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+/* Scoped so it doesn't restyle the navbar's avatar. */
+.profile-container .user-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--bg);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.profile-heading {
+  margin: 0;
+  color: var(--text);
+  font-size: 28px;
+}
+
+.profile-sub {
+  margin: 4px 0 0;
+  color: var(--text-2);
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.profile-section {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.section-title {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.section-content {
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.section-content p {
+  margin: 4px 0;
+}
+
+.section-content a {
+  color: var(--white);
+}
+
+.section-button {
+  margin-top: 12px;
+  padding: 7px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.section-button:hover {
+  background: var(--surface-4);
+}
+
+/* ---------------------------------------------------------------- style profile */
+.style-profile {
+  padding: 24px;
+}
+
+.style-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.style-stat {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+}
+
+.style-stat strong {
+  display: block;
+  color: var(--text);
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.style-stat span {
+  color: var(--text-3);
+  font-size: 12px;
+}
+
+.style-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 6px 0 18px;
+}
+
+.style-interest {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text);
+}
+
+.style-interest strong {
+  font-weight: 600;
+}
+
+.style-interest__thumbs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.style-interest__thumbs img {
+  width: 52px;
+  height: 78px;
+  border-radius: 6px;
+  background: var(--surface-3);
+  object-fit: cover;
+}
+
+.style-interest span,
+.style-avoid {
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.style-affinities p {
+  margin: 6px 0;
+}
+
+.style-affinities strong,
+.style-traits strong {
+  color: var(--text);
+  font-weight: 600;
+}

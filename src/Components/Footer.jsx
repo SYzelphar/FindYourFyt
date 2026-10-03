@@ -49,7 +49,7 @@ function Footer() {
       </div>
 
       <div className="ft-copyright">
-        <p>© 2024 FindYourFit. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} FindYourFit. All rights reserved.</p>
 
         <ul className="ft-social-links">
           <li>

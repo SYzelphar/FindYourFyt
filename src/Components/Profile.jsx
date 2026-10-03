@@ -1,68 +1,72 @@
 import React from "react";
 import '../Profile.css';
+import StyleProfile from './StyleProfile';
+import { USER, initials } from '../user';
 
 const Profile = () => {
-  // Assuming you have the user's name to extract initials
-  const userName = "John Doe"; // Example user name
-  const userInitials = userName.split(' ').map(name => name[0]).join('');
-
   return (
     <div className="profile-page">
-      
-
       <div className="profile-container">
-        <h2 className="profile-heading">My Profile</h2>
-        {/* User Initials Icon */}
-      <div className="user-icon">
-        {userInitials}
-      </div>
-        
-        <div className="profile-section">
-          <h3 className="section-title">Address</h3>
-          <div className="section-content">
-            <p>Home: Address not Set</p>
-            <p>Office:Address not set yet</p>
-            <button className="section-button">Manage Addresses</button>
+        <header className="profile-header">
+          <div className="user-icon">{initials(USER.name)}</div>
+          <div>
+            <h2 className="profile-heading display">{USER.name}</h2>
+            <p className="profile-sub">Your FindYourFit profile</p>
           </div>
-        </div>
+        </header>
 
-        <div className="profile-section">
-          <h3 className="section-title">Payment Methods</h3>
-          <div className="section-content">
-            <button className="section-button">Add a Payment Method</button>
+        <StyleProfile />
+
+        <div className="profile-grid">
+          <div className="profile-section">
+            <h3 className="section-title">Address</h3>
+            <div className="section-content">
+              <p>Home: not set</p>
+              <p>Office: not set</p>
+              <button className="section-button">Manage addresses</button>
+            </div>
           </div>
-        </div>
 
-        <div className="profile-section">
-          <h3 className="section-title">Past Orders</h3>
-          <div className="section-content">
-            <p>Your past orders will appear here</p>
-            <button className="section-button">View All Orders</button>
+          <div className="profile-section">
+            <h3 className="section-title">Payment methods</h3>
+            <div className="section-content">
+              <p>No payment method saved.</p>
+              <button className="section-button">Add a payment method</button>
+            </div>
           </div>
-        </div>
 
-        <div className="profile-section">
-          <h3 className="section-title">Account Settings</h3>
-          <div className="section-content">
-            <p>Email: ************@example.com</p>
-            <p>Phone: </p>
-            <button className="section-button">Edit Account Details</button>
+          <div className="profile-section">
+            <h3 className="section-title">Past orders</h3>
+            <div className="section-content">
+              <p>Your past orders will appear here.</p>
+              <button className="section-button">View all orders</button>
+            </div>
           </div>
-        </div>
 
-        <div className="profile-section">
-          <h3 className="section-title">Your most chosen website</h3>
-          <div className="section-content">
-            <p>Website 1</p>
-            <p>Website 2</p>
-            <button className="section-button">Manage Websites</button>
+          <div className="profile-section">
+            <h3 className="section-title">Account settings</h3>
+            <div className="section-content">
+              <p>Email: ************@example.com</p>
+              <p>Phone: not set</p>
+              <button className="section-button">Edit account details</button>
+            </div>
           </div>
-        </div>
 
-        <div className="profile-section">
-          <h3 className="section-title">Help & Support</h3>
-          <div className="section-content">
-            <button className="section-button">Get Help</button>
+          <div className="profile-section">
+            <h3 className="section-title">Your most chosen websites</h3>
+            <div className="section-content">
+              <p>Website 1</p>
+              <p>Website 2</p>
+              <button className="section-button">Manage websites</button>
+            </div>
+          </div>
+
+          <div className="profile-section">
+            <h3 className="section-title">Help &amp; support</h3>
+            <div className="section-content">
+              <p>Questions about your recommendations?</p>
+              <button className="section-button">Get help</button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,27 +1,63 @@
 .swipeButtons {
     position: fixed;
-    bottom: 2vh;
-    width: 100%;
+    bottom: 3vh;
+    left: var(--nav-w);   /* centred between the navbar ... */
+    right: var(--cart-w); /* ... and the cart sidebar */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
 }
 
 .swipeButtons .MuiIconButton-root {
-    background-color: white;
-    box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
-.swipeButtons__left {
-    padding: 1vw !important;
-    color: #ec5e6f !important
+.swipeButtons .MuiIconButton-root:hover {
+    background: var(--surface-3);
+    transform: translateY(-2px);
 }
 
-.swipeButtons__cart {
-    padding: 1vw !important;
-    color: #62b4f9 !important;
+.swipeButtons .MuiIconButton-root.Mui-disabled {
+    opacity: 0.4;
 }
 
-.swipeButtons__right{
-    padding: 1vw !important;
-    color: #76e2b3 !important;
+/* Pass: quiet. */
+.swipeButtons .swipeButtons__left {
+    padding: 16px;
+    color: var(--text-2);
+}
+
+.swipeButtons .swipeButtons__left:hover {
+    color: var(--white);
+}
+
+/* Save to cart: secondary, smaller. */
+.swipeButtons .swipeButtons__cart {
+    padding: 11px;
+    color: var(--text-2);
+}
+
+.swipeButtons .swipeButtons__cart:hover {
+    color: var(--white);
+}
+
+/* Like: the primary action, solid white. */
+.swipeButtons .swipeButtons__right {
+    padding: 16px;
+    border-color: var(--white);
+    background: var(--white);
+    color: var(--bg);
+}
+
+.swipeButtons .swipeButtons__right:hover {
+    background: #e4e4e7;
+}
+
+.swipeButtons .swipeButtons__right.Mui-disabled {
+    background: var(--white);
+    color: var(--bg);
 }

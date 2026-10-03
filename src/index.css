@@ -1,0 +1,107 @@
+/* FindYourFit design tokens: a monochrome dark theme (near-black surfaces, layered greys,
+   white reserved for primary actions). Every component styles itself from these. */
+:root {
+  color-scheme: dark;
+
+  --nav-w: 250px;
+  --cart-w: 20vw;
+
+  --bg: #0a0a0b;
+  --surface-1: #111113;    /* sidebars */
+  --surface-2: #17171a;    /* panels, cards */
+  --surface-3: #1f1f23;    /* inputs, hover */
+  --surface-4: #2a2a2f;    /* active / pressed */
+  --border: #232327;
+  --border-strong: #34343a;
+
+  --text: #f4f4f5;
+  --text-2: #a1a1aa;
+  --text-3: #71717a;
+  --white: #fafafa;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Archivo", "Inter", system-ui, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: #3f3f46;
+  color: var(--white);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-4) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--text-2);
+  outline-offset: 2px;
+}
+
+/* Expanded display face, echoing the logo's wide letterforms. */
+.display {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-variation-settings: "wdth" 125;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.btn-primary-mono:hover {
+  background: #e4e4e7;
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+.btn-secondary-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-secondary-mono:hover {
+  background: var(--surface-4);
+}
