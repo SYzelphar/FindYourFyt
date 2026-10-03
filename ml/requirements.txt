@@ -1,0 +1,13 @@
+# Offline pipeline (data prep, embeddings, two-tower training, evaluation). Python 3.11.
+# Install the CUDA build of PyTorch first (any CUDA 12.x driver works):
+#   pip install torch==2.14.1 torchvision==0.29.1 --index-url https://download.pytorch.org/whl/cu126
+# CPU-only also works, just slower (~20 min instead of ~3 min for embeddings).
+-r ../backend/requirements.txt
+torchvision==0.29.1
+polars==1.44.2
+pillow==10.4.0
+matplotlib==3.11.2
+
+# development
+pytest==9.1.1
+ruff==0.16.10
