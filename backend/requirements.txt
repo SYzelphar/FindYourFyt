@@ -1,0 +1,14 @@
+# Serving (Flask API + recommender). Python 3.11.
+# torch: the CPU build is enough to serve (user tower + FashionCLIP text encoder):
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+# The offline pipeline uses the CUDA build instead (see ml/requirements.txt).
+flask==3.0.3
+flask-cors==5.0.1
+numpy==1.26.4
+pandas==2.2.3
+pyarrow==25.0.1
+faiss-cpu==1.8.0.post1
+scikit-learn==1.9.1
+threadpoolctl==3.7.0
+torch==2.14.1
+transformers==4.57.6
